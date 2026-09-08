@@ -1,5 +1,7 @@
 # EvidenceBridge Multimodal MCP
 
+[![CI](https://github.com/zcy0109/evidencebridge-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/zcy0109/evidencebridge-mcp/actions/workflows/ci.yml)
+
 An evidence-first research workbench for policy, legal, teaching, and public-information materials. It is designed as a verifiable engineering artifact for the [HKU AI Engineer / Research Assistant II role (537095)](https://jobs.hku.hk/cw/en/job/537095/ai-engineer-at-the-rank-of-research-assistant-ii-in-the-school-of-computing-and-data-science) and the [PolyU Research Assistant role (260401018)](https://jobs.polyu.edu.hk/job_detail.php?job=260401018), not as a generic chatbot.
 
 The default mode needs no model key. A deterministic agent searches uploaded sources through a real MCP stdio server, verifies the selected quotation, routes uncertain or high-risk requests to human review, streams the answer to the UI, and records an audit trail. OpenAI-compatible and Azure OpenAI adapters are included for credentialed environments.
@@ -100,7 +102,7 @@ deploy/apache        Reverse-proxy example
 - The six sample materials are synthetic and MIT-licensed with this repository.
 - PDF text extraction is local; scanned PDF OCR is not bundled.
 - Image/audio are adapter-complete and fixture-tested, but require an explicit transcript unless an optional engine is installed.
-- PostgreSQL Docker execution and Azure live calls could not be run in the authoring environment because Docker and cloud credentials were absent. Prisma schema validation and local non-database workflows were run.
+- PostgreSQL Docker execution was unavailable in the authoring environment, but GitHub Actions verified PostgreSQL 16 startup, the checked-in Prisma migration, and all 13 Python tests including the PostgreSQL integration path. Azure live calls remain unverified because no cloud credentials/resources were available.
 - The PEFT code is an optional reproducible experiment scaffold. Only its dataset/metric smoke test is run by default; no trained adapter or claimed PEFT scores are included.
 
 Read [LIMITATIONS.md](./LIMITATIONS.md) before using this system for decisions and [SECURITY.md](./SECURITY.md) before any public deployment.

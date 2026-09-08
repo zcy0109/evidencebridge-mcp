@@ -25,10 +25,20 @@
 | PEFT split/metric smoke test | Passed; 24 records, 18 train / 6 test |
 | Local production browser workflow | Passed: workspace, 3 uploads, streamed answer, MCP search/verify/review traces, locators, refusal gate, audit page |
 
+## GitHub-hosted verification
+
+- Date: 2026-09-09 (Asia/Shanghai)
+- Environment: GitHub Actions Ubuntu runner with PostgreSQL 16 service
+- Successful run: [ci run 34252155480](https://github.com/zcy0109/evidencebridge-mcp/actions/runs/34252155480)
+- Prisma: checked-in migration `202609040001_init` applied successfully
+- Python: 13 tests passed, including the PostgreSQL integration test
+- TypeScript: MCP integration test (1) and Web provider/review tests (4) passed
+- Build: database package, MCP server, and Next.js production build passed; 10 routes/pages generated
+- Evaluation: deterministic 45-question evaluation command completed
+
 ## Not run locally
 
-- PostgreSQL migration and integration test, because Docker/PostgreSQL executables were unavailable.
-- GitHub Actions, because the project was not pushed.
+- PostgreSQL migration and integration test were not run on the authoring machine because Docker/PostgreSQL executables were unavailable; they were subsequently verified in GitHub Actions.
 - Live OpenAI-compatible or Azure OpenAI calls, because no keys/resources were available.
 - Apache public deployment.
 - LoRA training, GPU measurements, or any formal PEFT experiment.
