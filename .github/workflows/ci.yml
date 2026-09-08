@@ -43,6 +43,7 @@ jobs:
       - run: .venv/bin/pip install -r apps/flask-service/requirements-dev.txt
       - run: pnpm db:generate
       - run: pnpm db:migrate
+      - run: pnpm --filter @evidencebridge/db build
       - run: pnpm lint
       - run: pnpm test
       - run: pnpm build
