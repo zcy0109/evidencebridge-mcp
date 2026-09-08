@@ -1,0 +1,26 @@
+{
+  "name": "evidencebridge-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "concurrently -n flask,mcp,web -c yellow,cyan,green \"pnpm dev:flask\" \"pnpm --filter @evidencebridge/mcp-server dev\" \"pnpm --filter @evidencebridge/web dev\"",
+    "dev:flask": "cd apps/flask-service && ../../.venv/bin/flask --app evidencebridge.app:create_app run --port 5001 --debug",
+    "lint": "pnpm -r lint && pnpm lint:python",
+    "lint:python": ".venv/bin/ruff check apps/flask-service evaluation peft",
+    "test": "pnpm -r test && pnpm test:python",
+    "test:python": ".venv/bin/pytest -q apps/flask-service/tests evaluation/tests",
+    "typecheck": "pnpm -r typecheck",
+    "db:generate": "pnpm --filter @evidencebridge/db prisma:generate",
+    "db:migrate": "pnpm --filter @evidencebridge/db prisma:migrate",
+    "db:seed": "pnpm --filter @evidencebridge/db prisma:seed",
+    "evaluate": ".venv/bin/python evaluation/run_evaluation.py",
+    "setup:python": "python3 -m venv .venv && .venv/bin/pip install -r apps/flask-service/requirements-dev.txt",
+    "start": "concurrently -n flask,mcp,web -c yellow,cyan,green \"cd apps/flask-service && ../../.venv/bin/gunicorn -c gunicorn.conf.py 'evidencebridge.app:create_app()'\" \"pnpm --filter @evidencebridge/mcp-server start\" \"pnpm --filter @evidencebridge/web start\""
+  },
+  "devDependencies": {
+    "concurrently": "9.2.1",
+    "typescript": "5.9.2"
+  }
+}

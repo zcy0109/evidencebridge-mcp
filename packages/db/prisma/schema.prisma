@@ -1,0 +1,169 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Modality {
+  TEXT
+  PDF
+  IMAGE
+  AUDIO
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Workspace {
+  id            String         @id @default(uuid()) @db.Uuid
+  name          String
+  createdAt     DateTime       @default(now()) @map("created_at")
+  documents     Document[]
+  conversations Conversation[]
+  reviews       HumanReview[]
+  auditEvents   AuditEvent[]
+
+  @@map("workspaces")
+}
+
+model Document {
+  id          String          @id @default(uuid()) @db.Uuid
+  workspaceId String          @map("workspace_id") @db.Uuid
+  title       String
+  filename    String
+  version     Int             @default(1)
+  modality    Modality
+  sha256      String
+  mimeType    String          @map("mime_type")
+  createdAt   DateTime        @default(now()) @map("created_at")
+  workspace   Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  chunks      DocumentChunk[]
+  evidence    Evidence[]
+
+  @@unique([workspaceId, title, version])
+  @@index([workspaceId, createdAt])
+  @@map("documents")
+}
+
+model DocumentChunk {
+  id          String     @id @default(uuid()) @db.Uuid
+  documentId  String     @map("document_id") @db.Uuid
+  ordinal     Int
+  content     String
+  pageNumber Int?       @map("page_number")
+  startLine   Int?       @map("start_line")
+  endLine     Int?       @map("end_line")
+  startMs     Int?       @map("start_ms")
+  endMs       Int?       @map("end_ms")
+  tokenCount  Int        @map("token_count")
+  searchText  String     @map("search_text")
+  document    Document   @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  evidence    Evidence[]
+
+  @@unique([documentId, ordinal])
+  @@index([documentId])
+  @@map("document_chunks")
+}
+
+model Evidence {
+  id          String         @id @default(uuid()) @db.Uuid
+  documentId  String         @map("document_id") @db.Uuid
+  chunkId     String         @map("chunk_id") @db.Uuid
+  quote       String
+  locator     Json
+  modality    Modality
+  verified    Boolean        @default(false)
+  createdAt   DateTime       @default(now()) @map("created_at")
+  document    Document       @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  chunk       DocumentChunk  @relation(fields: [chunkId], references: [id], onDelete: Cascade)
+
+  @@index([documentId])
+  @@map("evidence")
+}
+
+model Conversation {
+  id          String      @id @default(uuid()) @db.Uuid
+  workspaceId String      @map("workspace_id") @db.Uuid
+  title       String
+  createdAt   DateTime    @default(now()) @map("created_at")
+  workspace   Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  messages    Message[]
+
+  @@index([workspaceId])
+  @@map("conversations")
+}
+
+model Message {
+  id             String      @id @default(uuid()) @db.Uuid
+  conversationId String      @map("conversation_id") @db.Uuid
+  role           String
+  content        String
+  createdAt      DateTime    @default(now()) @map("created_at")
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  toolCalls      ToolCall[]
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+model ToolCall {
+  id          String    @id @default(uuid()) @db.Uuid
+  messageId   String?   @map("message_id") @db.Uuid
+  toolName    String    @map("tool_name")
+  input       Json
+  output      Json?
+  status      String
+  latencyMs   Int?      @map("latency_ms")
+  error       String?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  message     Message?  @relation(fields: [messageId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@map("tool_calls")
+}
+
+model EvaluationRun {
+  id            String   @id @default(uuid()) @db.Uuid
+  version       String
+  configuration Json
+  metrics       Json
+  rawPath       String   @map("raw_path")
+  startedAt     DateTime @map("started_at")
+  completedAt   DateTime @map("completed_at")
+
+  @@map("evaluation_runs")
+}
+
+model HumanReview {
+  id          String       @id @default(uuid()) @db.Uuid
+  workspaceId String       @map("workspace_id") @db.Uuid
+  reason      String
+  payload     Json
+  riskLevel   String       @map("risk_level")
+  status      ReviewStatus @default(PENDING)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  resolvedAt  DateTime?    @map("resolved_at")
+  workspace   Workspace    @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, status])
+  @@map("human_reviews")
+}
+
+model AuditEvent {
+  id          String    @id @default(uuid()) @db.Uuid
+  workspaceId String?   @map("workspace_id") @db.Uuid
+  eventType   String    @map("event_type")
+  actor       String
+  payload     Json
+  createdAt   DateTime  @default(now()) @map("created_at")
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, createdAt])
+  @@map("audit_events")
+}

@@ -1,0 +1,21 @@
+CREATE TYPE "Modality" AS ENUM ('TEXT', 'PDF', 'IMAGE', 'AUDIO');
+CREATE TYPE "ReviewStatus" AS ENUM ('PENDING', 'APPROVED', 'REJECTED');
+
+CREATE TABLE "workspaces" ("id" UUID PRIMARY KEY, "name" TEXT NOT NULL, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE "documents" ("id" UUID PRIMARY KEY, "workspace_id" UUID NOT NULL REFERENCES "workspaces"("id") ON DELETE CASCADE, "title" TEXT NOT NULL, "filename" TEXT NOT NULL, "version" INTEGER NOT NULL DEFAULT 1, "modality" "Modality" NOT NULL, "sha256" TEXT NOT NULL, "mime_type" TEXT NOT NULL, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "documents_workspace_id_title_version_key" UNIQUE ("workspace_id", "title", "version"));
+CREATE INDEX "documents_workspace_id_created_at_idx" ON "documents"("workspace_id", "created_at");
+CREATE TABLE "document_chunks" ("id" UUID PRIMARY KEY, "document_id" UUID NOT NULL REFERENCES "documents"("id") ON DELETE CASCADE, "ordinal" INTEGER NOT NULL, "content" TEXT NOT NULL, "page_number" INTEGER, "start_line" INTEGER, "end_line" INTEGER, "start_ms" INTEGER, "end_ms" INTEGER, "token_count" INTEGER NOT NULL, "search_text" TEXT NOT NULL, CONSTRAINT "document_chunks_document_id_ordinal_key" UNIQUE ("document_id", "ordinal"));
+CREATE INDEX "document_chunks_document_id_idx" ON "document_chunks"("document_id");
+CREATE TABLE "evidence" ("id" UUID PRIMARY KEY, "document_id" UUID NOT NULL REFERENCES "documents"("id") ON DELETE CASCADE, "chunk_id" UUID NOT NULL REFERENCES "document_chunks"("id") ON DELETE CASCADE, "quote" TEXT NOT NULL, "locator" JSONB NOT NULL, "modality" "Modality" NOT NULL, "verified" BOOLEAN NOT NULL DEFAULT FALSE, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX "evidence_document_id_idx" ON "evidence"("document_id");
+CREATE TABLE "conversations" ("id" UUID PRIMARY KEY, "workspace_id" UUID NOT NULL REFERENCES "workspaces"("id") ON DELETE CASCADE, "title" TEXT NOT NULL, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX "conversations_workspace_id_idx" ON "conversations"("workspace_id");
+CREATE TABLE "messages" ("id" UUID PRIMARY KEY, "conversation_id" UUID NOT NULL REFERENCES "conversations"("id") ON DELETE CASCADE, "role" TEXT NOT NULL, "content" TEXT NOT NULL, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX "messages_conversation_id_created_at_idx" ON "messages"("conversation_id", "created_at");
+CREATE TABLE "tool_calls" ("id" UUID PRIMARY KEY, "message_id" UUID REFERENCES "messages"("id") ON DELETE SET NULL, "tool_name" TEXT NOT NULL, "input" JSONB NOT NULL, "output" JSONB, "status" TEXT NOT NULL, "latency_ms" INTEGER, "error" TEXT, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX "tool_calls_created_at_idx" ON "tool_calls"("created_at");
+CREATE TABLE "evaluation_runs" ("id" UUID PRIMARY KEY, "version" TEXT NOT NULL, "configuration" JSONB NOT NULL, "metrics" JSONB NOT NULL, "raw_path" TEXT NOT NULL, "started_at" TIMESTAMP(3) NOT NULL, "completed_at" TIMESTAMP(3) NOT NULL);
+CREATE TABLE "human_reviews" ("id" UUID PRIMARY KEY, "workspace_id" UUID NOT NULL REFERENCES "workspaces"("id") ON DELETE CASCADE, "reason" TEXT NOT NULL, "payload" JSONB NOT NULL, "risk_level" TEXT NOT NULL, "status" "ReviewStatus" NOT NULL DEFAULT 'PENDING', "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "resolved_at" TIMESTAMP(3));
+CREATE INDEX "human_reviews_workspace_id_status_idx" ON "human_reviews"("workspace_id", "status");
+CREATE TABLE "audit_events" ("id" UUID PRIMARY KEY, "workspace_id" UUID REFERENCES "workspaces"("id") ON DELETE CASCADE, "event_type" TEXT NOT NULL, "actor" TEXT NOT NULL, "payload" JSONB NOT NULL, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX "audit_events_workspace_id_created_at_idx" ON "audit_events"("workspace_id", "created_at");

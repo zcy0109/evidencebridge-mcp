@@ -1,0 +1,60 @@
+{
+  "run_id": "20260907T072434Z",
+  "version": "deterministic-components-v1",
+  "mode": "deterministic_components_no_llm",
+  "started_at": "2026-09-07T07:24:34.195442+00:00",
+  "completed_at": "2026-09-07T07:24:34.314577+00:00",
+  "configuration": {
+    "python": "3.12.14",
+    "dataset_sha256_note": "Use git hash or sha256sum evaluation/questions.jsonl for publication",
+    "question_count": 45,
+    "seed": null
+  },
+  "metrics": {
+    "direct_answer": {
+      "questions": 45,
+      "citation_accuracy": 0.0,
+      "evidence_retrieval_recall": 0.0,
+      "unsupported_claim_rate": 0.3111,
+      "tool_call_success_rate": null,
+      "human_review_recall": 0.0,
+      "average_latency_ms": 0.2136,
+      "failure_distribution": {
+        "answer_mismatch": 9,
+        "missed_review": 11,
+        "unsupported_claim": 5
+      }
+    },
+    "basic_rag": {
+      "questions": 45,
+      "citation_accuracy": 0.0,
+      "evidence_retrieval_recall": 0.825,
+      "unsupported_claim_rate": 0.4222,
+      "tool_call_success_rate": 1.0,
+      "human_review_recall": 0.0,
+      "average_latency_ms": 1.0905,
+      "failure_distribution": {
+        "answer_mismatch": 15,
+        "missed_review": 11,
+        "retrieval_miss": 7,
+        "unsupported_claim": 4
+      }
+    },
+    "rag_mcp_verified": {
+      "questions": 45,
+      "citation_accuracy": 0.6,
+      "evidence_retrieval_recall": 0.825,
+      "unsupported_claim_rate": 0.3333,
+      "tool_call_success_rate": 1.0,
+      "human_review_recall": 1.0,
+      "average_latency_ms": 1.2428,
+      "failure_distribution": {
+        "answer_mismatch": 15,
+        "false_review": 1,
+        "retrieval_miss": 7
+      }
+    }
+  },
+  "raw_records": "evaluation/runs/20260907T072434Z-raw.jsonl",
+  "disclosure": "Deterministic component evaluation; these are not real LLM results."
+}
