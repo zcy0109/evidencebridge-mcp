@@ -2,6 +2,10 @@
 
 [![CI](https://github.com/zcy0109/evidencebridge-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/zcy0109/evidencebridge-mcp/actions/workflows/ci.yml)
 
+**Live demo:** [evidencebridge.chenyuzhanglabs.com](https://evidencebridge.chenyuzhanglabs.com/)
+
+The public Vercel demo is a deterministic, static replay of the evidence workflow using synthetic materials. It requires no API key and stores no uploads. The executable Flask, PostgreSQL, Prisma, Vercel AI SDK, and MCP implementation remains in this repository and is verified by the automated test suite and GitHub Actions.
+
 An evidence-first research workbench for policy, legal, teaching, and public-information materials. It is designed as a verifiable engineering artifact for the [HKU AI Engineer / Research Assistant II role (537095)](https://jobs.hku.hk/cw/en/job/537095/ai-engineer-at-the-rank-of-research-assistant-ii-in-the-school-of-computing-and-data-science) and the [PolyU Research Assistant role (260401018)](https://jobs.polyu.edu.hk/job_detail.php?job=260401018), not as a generic chatbot.
 
 The default mode needs no model key. A deterministic agent searches uploaded sources through a real MCP stdio server, verifies the selected quotation, routes uncertain or high-risk requests to human review, streams the answer to the UI, and records an audit trail. OpenAI-compatible and Azure OpenAI adapters are included for credentialed environments.
