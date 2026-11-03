@@ -165,6 +165,18 @@ const plan = [
     },
   },
   {
+    name: 'the first keyboard stop reveals a skip link and Enter focuses the workspace',
+    async run() {
+      const skip = page.getByRole('link', { name: 'Skip to workspace', exact: true });
+      await page.keyboard.press('Tab');
+      await assertFocused(skip);
+      const bounds = await skip.boundingBox();
+      assert.ok(bounds && bounds.y >= 0 && bounds.y + bounds.height <= 1000, 'The focused skip link must be inside the viewport');
+      await page.keyboard.press('Enter');
+      await assertFocused(page.locator('#main-content'));
+    },
+  },
+  {
     name: 'initial attendance answer links to the original source at line three',
     async run() {
       assert.equal(await page.locator('.research-note h2').innerText(), questions.attendance);
