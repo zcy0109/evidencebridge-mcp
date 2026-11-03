@@ -110,3 +110,7 @@ deploy/apache        Reverse-proxy example
 - The PEFT code is an optional reproducible experiment scaffold. Only its dataset/metric smoke test is run by default; no trained adapter or claimed PEFT scores are included.
 
 Read [LIMITATIONS.md](./LIMITATIONS.md) before using this system for decisions and [SECURITY.md](./SECURITY.md) before any public deployment.
+
+## Public demo source
+
+The static website source, reproducible build instructions and UI verification records are available in [demos/evidencebridge-site-demo](demos/evidencebridge-site-demo/README.md). It contains three prewritten cases with synthetic evidence, source navigation, policy deadline comparison and audit replay. This source synchronization does not deploy the new UI or change the live domain. Browser visual acceptance remains unverified; see the demo's verification notes.

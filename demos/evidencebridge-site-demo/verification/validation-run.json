@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-11-02T14:31:22.328Z",
+  "scope": "Local static demo redesign only",
+  "runtime": "Node.js 24.19.0 using a compatible cached runtime; primary bundled Node failed to start on this macOS",
+  "checks": [
+    {
+      "name": "TypeScript",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "fccfe5",
+          "wall_time_seconds": 1.8178298750000002,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "Demo source and replay tests",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "f4ced4",
+          "wall_time_seconds": 0.000008334,
+          "exit_code": 0,
+          "original_token_count": 266,
+          "output": "✔ six distinct, explicitly synthetic sources have consistent metadata (0.632875ms)\n✔ every scenario quotation exists at its stated one-based original source line (0.108792ms)\n✔ the attendance answer is a verbatim quotation, not an invented requirement (0.059ms)\n✔ version comparison uses real differences between the two displayed synthetic sources (0.081333ms)\n✔ legal example withholds advice and never claims a real human-review request (0.067334ms)\n✔ the three supported questions accept casing and whitespace changes (0.7305ms)\n✔ unsupported questions never fall through to attendance or a keyword-triggered answer (0.474542ms)\n✔ audit replay follows the selected scenario with no fake timestamps or measured timings (0.727333ms)\n✔ source and scenario snapshots cannot be silently modified by UI state (0.098916ms)\n✔ source snapshots match canonical local example files when the backend checkout is present (1.882208ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 83.066542\n"
+        }
+      }
+    },
+    {
+      "name": "Vercel static build",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "e2c9d9",
+          "wall_time_seconds": 0.376263333,
+          "exit_code": 0,
+          "original_token_count": 88,
+          "output": "vite v8.0.13 building client environment for production...\n\u001b[2K\rtransforming...✓ 1795 modules transformed.\nrendering chunks...\ncomputing gzip size...\nout/index.html                   1.16 kB │ gzip:  0.55 kB\nout/assets/index-BjggDWaV.css   30.18 kB │ gzip:  7.12 kB\nout/assets/index-B3nrByJS.js   216.38 kB │ gzip: 68.36 kB\n\n✓ built in 254ms\n"
+        }
+      }
+    },
+    {
+      "name": "Git diff whitespace check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "187259",
+          "wall_time_seconds": 0.000012916,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    }
+  ],
+  "browser": {
+    "status": "launch_failed",
+    "message": "browserType.launch: Target page, context or browser has been closed. Failure occurred before page inspection.",
+    "visual_qa": "not_verified",
+    "interaction_suite": "scripts/verify-ui.mjs was prepared and syntax checked, but not executed after the browser-launch failure"
+  },
+  "deployment": "not_performed"
+}

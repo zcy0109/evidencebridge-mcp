@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-11-03T00:59:46.053Z",
+  "user_date": "2026-11-03",
+  "scope": "Local static demonstration: command search, source reading, focus mode and interaction feedback",
+  "checks": [
+    {
+      "name": "Source/replay/search unit tests (14 passed, no skips)",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "c6ffa6",
+          "wall_time_seconds": 0.052257708,
+          "exit_code": 0,
+          "original_token_count": 352,
+          "output": "✔ six distinct, explicitly synthetic sources have consistent metadata (0.698666ms)\n✔ every scenario quotation exists at its stated one-based original source line (0.134375ms)\n✔ the attendance answer is a verbatim quotation, not an invented requirement (0.069125ms)\n✔ version comparison uses real differences between the two displayed synthetic sources (0.092625ms)\n✔ legal example withholds advice and never claims a real human-review request (0.074208ms)\n✔ the three supported questions accept casing and whitespace changes (0.98025ms)\n✔ unsupported questions never fall through to attendance or a keyword-triggered answer (0.180042ms)\n✔ audit replay follows the selected scenario with no fake timestamps or measured timings (0.738ms)\n✔ source and scenario snapshots cannot be silently modified by UI state (0.125792ms)\n✔ source snapshots match canonical local example files when the backend checkout is present (2.648917ms)\n✔ every search destination resolves to a real view, example, or source (1.440958ms)\n✔ source filenames disambiguate old and new policy versions (0.620042ms)\n✔ a visitor can discover a guided example by its actual question (0.13425ms)\n✔ empty queries show available destinations; unknown input never fabricates a destination (0.098792ms)\nℹ tests 14\nℹ suites 0\nℹ pass 14\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 147.674667\n"
+        }
+      }
+    },
+    {
+      "name": "TypeScript",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "7bea44",
+          "wall_time_seconds": 2.043271208,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "Production static build",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "c9b443",
+          "wall_time_seconds": 0.768720167,
+          "exit_code": 0,
+          "original_token_count": 88,
+          "output": "vite v8.0.13 building client environment for production...\n\u001b[2K\rtransforming...✓ 1797 modules transformed.\nrendering chunks...\ncomputing gzip size...\nout/index.html                   1.16 kB │ gzip:  0.56 kB\nout/assets/index-BNoY5W4m.css   38.89 kB │ gzip:  8.88 kB\nout/assets/index-1zApxBqD.js   224.94 kB │ gzip: 70.77 kB\n\n✓ built in 334ms\n"
+        }
+      }
+    },
+    {
+      "name": "Browser suite syntax only",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "8cf1fa",
+          "wall_time_seconds": 0.084483208,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "Git diff whitespace",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "d46d8b",
+          "wall_time_seconds": 8.166e-06,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "SSR structure and offline packaging (6 passed)",
+      "result": {
+        "chunk_id": "c86945",
+        "wall_time_seconds": 8.833e-06,
+        "exit_code": 0,
+        "original_token_count": 69,
+        "output": "{\"preview\":\"<project-root>/verification/design-preview.html\",\"checks\":6,\"scope\":\"React server-rendered structure and offline packaging only; not browser or visual QA\",\"bytes\":286268}\n"
+      }
+    }
+  ],
+  "artifact_manifest": "design-checks.json",
+  "browser": {
+    "status": "not_run_this_pass",
+    "reason": "The preceding turn's browser launch failed before inspecting the page. No changed browser setup was established, so it was not retried.",
+    "acceptance_groups_prepared": 23,
+    "interaction_verified": false,
+    "visual_verified": false,
+    "screenshots": []
+  },
+  "deployment": "not_performed",
+  "backend_changes": "none",
+  "publication_redaction": "Workstation project-root paths replaced with <project-root>; recorded outcomes, counts and timestamps are unchanged."
+}

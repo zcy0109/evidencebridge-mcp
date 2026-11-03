@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-11-03T02:33:40.791Z",
+  "user_date": "2026-11-03",
+  "scope": "Local static demo: explicit case selection, readable typography, reduced copy and actual deadline excerpts",
+  "checks": [
+    {
+      "name": "Unit tests (17 passed, zero failures or skips)",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "3b3486",
+          "wall_time_seconds": 0.046444417,
+          "exit_code": 0,
+          "original_token_count": 419,
+          "output": "✔ six distinct, explicitly synthetic sources have consistent metadata (0.715167ms)\n✔ every scenario quotation exists at its stated one-based original source line (0.414625ms)\n✔ the attendance answer is a verbatim quotation, not an invented requirement (0.079709ms)\n✔ version comparison uses real differences between the two displayed synthetic sources (0.101375ms)\n✔ legal example withholds advice and never claims a real human-review request (0.079625ms)\n✔ the three supported questions accept casing and whitespace changes (1.925708ms)\n✔ unsupported questions never fall through to attendance or a keyword-triggered answer (0.975958ms)\n✔ audit replay follows the selected scenario with no fake timestamps or measured timings (0.722125ms)\n✔ source and scenario snapshots cannot be silently modified by UI state (0.107625ms)\n✔ source snapshots match canonical local example files when the backend checkout is present (3.069375ms)\n✔ both deadline excerpts come from their exact source locations (0.717916ms)\n✔ highlighted date replacement preserves the complete old and new excerpts (0.095417ms)\n✔ word highlights do not invent changes for identical text or lose whitespace (0.214542ms)\n✔ every search destination resolves to a real view, example, or source (1.250084ms)\n✔ source filenames disambiguate old and new policy versions (0.710208ms)\n✔ a visitor can discover a guided example by its actual question (0.200625ms)\n✔ empty queries show available destinations; unknown input never fabricates a destination (0.097375ms)\nℹ tests 17\nℹ suites 0\nℹ pass 17\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 150.812125\n"
+        }
+      }
+    },
+    {
+      "name": "TypeScript",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "8ef84c",
+          "wall_time_seconds": 1.990506083,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "Vercel static production build",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "5fe8f0",
+          "wall_time_seconds": 0.783438125,
+          "exit_code": 0,
+          "original_token_count": 88,
+          "output": "vite v8.0.13 building client environment for production...\n\u001b[2K\rtransforming...✓ 1799 modules transformed.\nrendering chunks...\ncomputing gzip size...\nout/index.html                   1.13 kB │ gzip:  0.50 kB\nout/assets/index-dlsw-sJQ.css   36.19 kB │ gzip:  8.37 kB\nout/assets/index-Cayt5_Q8.js   223.39 kB │ gzip: 70.30 kB\n\n✓ built in 394ms\n"
+        }
+      }
+    },
+    {
+      "name": "Browser acceptance suite syntax only",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "202acd",
+          "wall_time_seconds": 0.024217625,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "Git diff whitespace",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "13daf6",
+          "wall_time_seconds": 7.917e-06,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "SSR source/excerpt/structure and offline packaging (7 passed)",
+      "result": {
+        "chunk_id": "542351",
+        "wall_time_seconds": 9.25e-06,
+        "exit_code": 0,
+        "original_token_count": 69,
+        "output": "{\"preview\":\"<project-root>/verification/design-preview.html\",\"checks\":7,\"scope\":\"React server-rendered structure and offline packaging only; not browser or visual QA\",\"bytes\":278540}\n"
+      }
+    }
+  ],
+  "artifact_manifest": "design-checks.json",
+  "browser": {
+    "status": "not_run_this_pass",
+    "reason": "No changed browser setup was established after the earlier launch failure; the unchanged failed setup was not retried.",
+    "acceptance_groups_prepared": 23,
+    "interaction_verified": false,
+    "visual_verified": false,
+    "screenshots": []
+  },
+  "deployment": "not_performed",
+  "backend_changes": "none",
+  "publication_redaction": "Workstation project-root paths replaced with <project-root>; recorded outcomes, counts and timestamps are unchanged."
+}

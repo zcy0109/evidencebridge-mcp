@@ -1,0 +1,61 @@
+{
+  "recorded_at": "2026-11-03T04:13:11.762Z",
+  "scope": "GitHub publication snapshot in demos/evidencebridge-site-demo",
+  "dependency_install": "Existing installed dependencies were reused for validation; a clean dependency install was not performed.",
+  "checks": [
+    {
+      "name": "Unit tests (17 passed, no skips)",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "76f625",
+          "wall_time_seconds": 0.611769333,
+          "exit_code": 0,
+          "original_token_count": 418,
+          "output": "✔ six distinct, explicitly synthetic sources have consistent metadata (1.105292ms)\n✔ every scenario quotation exists at its stated one-based original source line (0.140542ms)\n✔ the attendance answer is a verbatim quotation, not an invented requirement (0.071792ms)\n✔ version comparison uses real differences between the two displayed synthetic sources (0.096917ms)\n✔ legal example withholds advice and never claims a real human-review request (0.078167ms)\n✔ the three supported questions accept casing and whitespace changes (1.653167ms)\n✔ unsupported questions never fall through to attendance or a keyword-triggered answer (1.129333ms)\n✔ audit replay follows the selected scenario with no fake timestamps or measured timings (0.679083ms)\n✔ source and scenario snapshots cannot be silently modified by UI state (0.108792ms)\n✔ source snapshots match canonical local example files when the backend checkout is present (0.713417ms)\n✔ both deadline excerpts come from their exact source locations (1.134833ms)\n✔ highlighted date replacement preserves the complete old and new excerpts (0.099958ms)\n✔ word highlights do not invent changes for identical text or lose whitespace (0.159083ms)\n✔ every search destination resolves to a real view, example, or source (3.075834ms)\n✔ source filenames disambiguate old and new policy versions (1.499667ms)\n✔ a visitor can discover a guided example by its actual question (0.15925ms)\n✔ empty queries show available destinations; unknown input never fabricates a destination (0.102458ms)\nℹ tests 17\nℹ suites 0\nℹ pass 17\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 183.818\n"
+        }
+      }
+    },
+    {
+      "name": "TypeScript",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "68a471",
+          "wall_time_seconds": 3.433791875,
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    {
+      "name": "Default static production build",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "0805d6",
+          "wall_time_seconds": 1.1462805,
+          "exit_code": 0,
+          "original_token_count": 88,
+          "output": "vite v8.0.13 building client environment for production...\n\u001b[2K\rtransforming...✓ 1799 modules transformed.\nrendering chunks...\ncomputing gzip size...\nout/index.html                   1.13 kB │ gzip:  0.50 kB\nout/assets/index-dlsw-sJQ.css   36.19 kB │ gzip:  8.37 kB\nout/assets/index-Cayt5_Q8.js   223.39 kB │ gzip: 70.30 kB\n\n✓ built in 374ms\n"
+        }
+      }
+    }
+  ],
+  "canonical_example_parity": {
+    "matched": true,
+    "files": 6,
+    "compared_against_commit": "c16f0de412466e62cf390b4c67114ee13bfe210b"
+  },
+  "offline_structure_checks": {
+    "chunk_id": "0c4f28",
+    "wall_time_seconds": 0.000008833,
+    "exit_code": 0,
+    "original_token_count": 73,
+    "output": "{\"preview\":\"/private<snapshot-root>/demos/evidencebridge-site-demo/verification/design-preview.html\",\"checks\":7,\"scope\":\"React server-rendered structure and offline packaging only; not browser or visual QA\",\"bytes\":278540}\n"
+  },
+  "browser_verified": false,
+  "deployment_performed": false,
+  "workstation_paths": "redacted"
+}

@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-11-03T04:12:37.496Z",
+  "scope": "React server-rendered structure and offline packaging only; not browser or visual QA",
+  "checks": [
+    {
+      "name": "one main workspace heading and labelled source inspector",
+      "status": "passed"
+    },
+    {
+      "name": "initial sample quote and exact original line number are present",
+      "status": "passed"
+    },
+    {
+      "name": "static replay and non-executed tools are disclosed",
+      "status": "passed"
+    },
+    {
+      "name": "navigation and three explicit case selectors replace answer-generation inputs",
+      "status": "passed"
+    },
+    {
+      "name": "interaction entry points have explicit accessible names and modal semantics",
+      "status": "passed"
+    },
+    {
+      "name": "policy comparison renders source-backed deadline excerpts with only the changed word marked",
+      "status": "passed"
+    },
+    {
+      "name": "offline preview has no linked asset or font dependency",
+      "status": "passed"
+    }
+  ],
+  "preview_bytes": 278540,
+  "preview_sha256": "fb0acbc0c0a4810ad4f450582edf2cf973d0e65ec23ecffa66aff8f2985acf3b",
+  "source_sha256": {
+    "app/page.tsx": "9bd095e51a15da22c8cd99b6ce6e290224aa0bbe238434531ed0738680e16c33",
+    "app/globals.css": "d074d35a168de5077a50ca8ab53c368770e878ed87b47392c4f614694d83a992",
+    "lib/demo-data.ts": "f4f8d8b77e9b319762978d56388858acc82ca7fdf7f7124b4e906d581a96bd35",
+    "lib/workspace-commands.ts": "ab2d5267885230941e17b75e580fe3f86e10c53c38c1fc221d9453d9f84a7326",
+    "lib/policy-comparison.ts": "e279926f3026b3ea650ff0218e81c92c1c8fee5441e4a463dd5ead23d6cc7d79",
+    "components/workspace-overlays.tsx": "f6a0d35122cad18081461310e38010b7c01f7a767ec7064b0b2d7ae09cdbc2a3",
+    "components/policy-comparison.tsx": "5d4ef1d48ab23a6a4cc071833fd736f543627378f83141aafd873d5218133d6c",
+    "scripts/preview-entry.tsx": "850a8c8cadc1567172346669d5d7e986e43e82cbcec2d18f3d3fa5bf826a6ac1",
+    "scripts/export-preview.mjs": "5207edbb015659b8d2c2aea137ccb38363539d246f226f4b5f0c6794623d8892"
+  }
+}
