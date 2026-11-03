@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-11-03T04:12:37.496Z",
+  "recorded_at": "2026-11-03T12:36:14.137Z",
   "scope": "React server-rendered structure and offline packaging only; not browser or visual QA",
   "checks": [
     {
@@ -31,11 +31,11 @@
       "status": "passed"
     }
   ],
-  "preview_bytes": 278540,
-  "preview_sha256": "fb0acbc0c0a4810ad4f450582edf2cf973d0e65ec23ecffa66aff8f2985acf3b",
+  "preview_bytes": 278604,
+  "preview_sha256": "6c1151e6d4ee17d75ad876cdd53484ab940031d708b7defb0a79fd6fce9f827c",
   "source_sha256": {
     "app/page.tsx": "9bd095e51a15da22c8cd99b6ce6e290224aa0bbe238434531ed0738680e16c33",
-    "app/globals.css": "d074d35a168de5077a50ca8ab53c368770e878ed87b47392c4f614694d83a992",
+    "app/globals.css": "cfdd4fff8b21a0edcdf670080476ce7fbae29cbdeb837c1778649de818a427f2",
     "lib/demo-data.ts": "f4f8d8b77e9b319762978d56388858acc82ca7fdf7f7124b4e906d581a96bd35",
     "lib/workspace-commands.ts": "ab2d5267885230941e17b75e580fe3f86e10c53c38c1fc221d9453d9f84a7326",
     "lib/policy-comparison.ts": "e279926f3026b3ea650ff0218e81c92c1c8fee5441e4a463dd5ead23d6cc7d79",

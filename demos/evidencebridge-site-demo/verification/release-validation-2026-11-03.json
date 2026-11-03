@@ -1,0 +1,89 @@
+{
+  "source_commit": "603ddd0fb18084ec8135bea934d2326a203e1651",
+  "scope": "Static synthetic replay frontend; not live model/backend or production deployment",
+  "public_demo_ci": {
+    "url": "https://github.com/zcy0109/evidencebridge-mcp/actions/runs/41637047590",
+    "conclusion": "success",
+    "clean_dependency_install": true,
+    "unit_tests_passed": 17,
+    "typecheck": "passed",
+    "production_build": "passed",
+    "offline_packaging_checks_passed": 7,
+    "browser_groups": {
+      "planned": 24,
+      "passed": 24,
+      "failed": 0,
+      "not_executed": 0
+    },
+    "browser_report": "ui/2026-11-03T12-36-36.067Z.json",
+    "widths_px": [
+      1440,
+      1024,
+      768,
+      390,
+      320
+    ]
+  },
+  "visual_review": {
+    "screenshots_reviewed": [
+      "1440px desktop",
+      "390px mobile"
+    ],
+    "physical_devices_tested": false
+  },
+  "earlier_failures": [
+    {
+      "run_id": 41619764183,
+      "phase": "workflow validation",
+      "reason": "runner.temp referenced in job-level env; moved into step env",
+      "browser_executed": false
+    },
+    {
+      "run_id": 41620106423,
+      "phase": "browser group 9",
+      "passed": 8,
+      "reason": "Assertion read innerText before rendered feedback; now waits for actual visible message"
+    },
+    {
+      "run_id": 41635985670,
+      "phase": "browser group 14",
+      "passed": 13,
+      "reason": "Assertion read old inspector before animation-frame navigation; now waits for selected label and destination"
+    }
+  ],
+  "local_environment": {
+    "node": "24.19.0",
+    "pnpm": "11.25.0",
+    "clean_install": "completed",
+    "workerd_postinstall_warning": "Binary requires newer macOS; unused by this static Vite build",
+    "browser_launch": "system Chrome aborted before page inspection; browser acceptance ran on Linux CI"
+  },
+  "release_candidate": {
+    "format": "Vercel Build Output API v3 static files",
+    "files": [
+      {
+        "path": "assets/index-BBvWPiRE.css",
+        "bytes": 36261,
+        "sha256": "e27868ef53d1e86208db0cb70f0af2d0a593a3dd5d3ad0cbdcfbe801e154ce4a"
+      },
+      {
+        "path": "assets/index-Y-pNjN2N.js",
+        "bytes": 223394,
+        "sha256": "ac4a7b18dd78584cea8a6aae245f4b994b134ada66b9c67ed58fe2efeb790962"
+      },
+      {
+        "path": "favicon.svg",
+        "bytes": 327,
+        "sha256": "1b4081b678887944a28de147b586f2c6f9277ed05a5e00ee90c125954b94a8f3"
+      },
+      {
+        "path": "index.html",
+        "bytes": 1138,
+        "sha256": "2942607e7b4961bda2513562ca54474105db9f20db4118bf847893a93b9f804a"
+      }
+    ],
+    "target_url": "https://evidencebridge.chenyuzhanglabs.com/",
+    "deployed": false,
+    "blocking_dependency": "Vercel account login must be renewed; saved token returned403 invalidToken:true"
+  }
+}

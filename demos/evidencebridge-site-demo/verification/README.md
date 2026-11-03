@@ -1,44 +1,42 @@
-# Local reading and case-flow candidate — 2026-11-03
+# Public demo validation — 2026-11-03
 
-This is a redesign of the public **static example replay**. It does not change the backend, execute MCP tools, create review requests, or certify a live provider. No deployment or push was performed.
+The current browser-verified source is commit `603ddd0fb18084ec8135bea934d2326a203e1651`. [Public demo CI](https://github.com/zcy0109/evidencebridge-mcp/actions/runs/41637047590) completed successfully. Its source hashes were checked against the local release candidate before saving this evidence.
 
-Open `design-preview.html` directly in a browser. Its CSS, JavaScript, favicon, and initial React-rendered content are embedded. Repository links still require internet access. Clipboard access may be unavailable when opening a local file; the interface reports that failure.
+## Verified
 
-## Design direction
+- Fresh installation with the frozen demo lockfile on Linux, Node.js 24 and pnpm 11.19.0.
+- 17 source/replay/search/comparison tests, type checking, production build and seven SSR/offline packaging checks.
+- 24/24 Chromium browser groups: source citations, policy excerpts, explicit legal-review boundary, audit JSON download, document filtering, controlled clipboard success/failure and stale results, keyboard commands, focus restoration, native dialogs and skip navigation.
+- Layout checks at 1440, 1024, 768, 390 and 320 pixels. Desktop and mobile screenshots were reviewed for visible layout problems. These are emulated viewports, not physical-device or Safari tests.
 
-The workspace organization draws on [Linear](https://linear.app/), and the emphasis on readable document hierarchy draws on [Notion](https://www.notion.com/product). These are structural references, not copied screens or assets. Warm paper, charcoal, restrained olive accents, serif reading titles, thin dividers, and a persistent source column replace the previous promotional banner and repeated cards. No external font or image dependency was added.
+[Release record](release-validation-2026-11-03.json) · [Raw browser report](ui/2026-11-03T12-36-36.067Z.json) · [Desktop screenshot](ui/2026-11-03T12-36-36.067Z-research-1440.png) · [Mobile screenshot](ui/2026-11-03T12-36-36.067Z-research-390.png) · [Downloaded illustrative audit JSON](ui/2026-11-03T12-36-36.067Z-export.json)
 
-Research, Documents, and Audit replay are distinct views. Six synthetic sources preserve their original text and line numbers. The public UI exposes three named prewritten cases and has no answer-generation input. The audit export identifies itself as an illustrative replay rather than a server log.
+## Failures retained
 
-The latest refinement removes the promotional headings, decorative numbering, sidebar quotation and repeated question entry. The case question is the primary reading heading; original source text is 15 px and common actions are 13 px. The mode disclosure remains visible in every main view, and tool details start collapsed. The policy case shows two source-backed deadline sentences with the changed date marked, explicit filenames and line numbers, and buttons to inspect each complete document. The comparison is labelled as an excerpt, since other policy text also differs.
+| Check | Observed result | Resolution |
+| --- | --- | --- |
+| Initial workflow validation, run 41619764183 | No jobs executed | Moved runner context from job-level environment to step environment. |
+| [Browser run 41620106423](https://github.com/zcy0109/evidencebridge-mcp/actions/runs/41620106423) | 8 groups passed; clipboard-message assertion failed | Wait for rendered visible feedback; the failure screenshot already showed the correct message. [Raw report](ui/2026-11-03T10-33-15.690Z.json). |
+| [Browser run 41635985670](https://github.com/zcy0109/evidencebridge-mcp/actions/runs/41635985670) | 13 groups passed; source-selection assertion read the preceding document | Wait for the selected option and animation-frame source navigation. [Raw report](ui/2026-11-03T12-29-01.456Z.json). |
+| Local Mac browser probe | Chrome aborted before inspecting the page | Browser acceptance ran in an isolated Linux CI context instead. No local browser pass is claimed. |
+| Screenshot review | Unfocused skip link appeared in a scrolled full-page capture | Explicitly clip it when unfocused and add a first-Tab/Enter navigation check. Latest 24-group run passed. |
 
-## Interaction tour
-
-1. Choose **Attendance requirement**, **Policy deadline**, or **Legal review** to see the corresponding conclusion and source. Select **Find anything** or press **⌘K / Ctrl K** to search a filename, example question, or view. Arrow keys move through destinations; Enter opens one and Escape closes search. Search navigates existing demo content, not generated answers.
-2. Click citation **1** or its quotation. The actual cited source line receives focus and a brief highlight. **Return to answer** restores the citation that opened it. **Open reader** presents the complete source in a larger reading surface, with a bottom-sheet layout on small screens. Closing restores the opener.
-3. On desktop, **Focus reading** hides the navigation rail while retaining sources and search. Use the same control to return. Copy feedback changes only after the clipboard operation resolves; failures remain visible and late results from another example are ignored.
-
-Page and source transitions, disclosure arrows, button presses and citation feedback use brief CSS motion (at most 240 ms), with the system reduced-motion preference respected. No animation, search, or dialog package was added. Native dialogs provide modal focus containment and Escape behavior; the code restores body scrolling on close. These behaviors are implemented and awaiting real-browser acceptance as detailed below.
+The earlier `github-sync-validation-2026-11-03.json`, `refinement-validation-2026-11-03.json`, `interaction-validation-2026-11-03.json` and `validation-run.json` are historical records. Their narrower browser-unverified status remains accurate for those runs.
 
 ## Reproduce
 
-From the project directory with a compatible Node.js installation and dependencies installed:
-
 ```sh
-npm test
-npm run typecheck
-npm run build:preview
-npm run preview
+pnpm install --frozen-lockfile
+pnpm test
+pnpm typecheck
+pnpm build:preview
+pnpm preview --strictPort
+# In a second terminal with Playwright and Chromium already installed:
+node scripts/verify-ui.mjs
 ```
 
-The local preview server uses port 4178. `build:preview` builds both the Vercel output and a temporary server-rendering bundle, runs seven markup/package assertions, then creates the standalone preview. `design-checks.json` records source and output hashes. `refinement-validation-2026-11-03.json` preserves this candidate's validation output. `interaction-validation-2026-11-03.json` and `validation-run.json` are historical snapshots and do not certify the latest changes.
+The preview uses loopback port 4178. `EVIDENCEBRIDGE_PLAYWRIGHT_MODULE` and `EVIDENCEBRIDGE_CHROMIUM_PATH` optionally select an installed driver and browser. The GitHub workflow installs pinned tools separately and preserves fresh reports as artifacts; it removes checked-in historical browser outputs before executing tests.
 
-## Verified scope and remaining check
+## Scope
 
-The GitHub snapshot was also checked in its published directory layout; see [the synchronization validation record](github-sync-validation-2026-11-03.json). It passed all 17 tests without skips, type checking, the default static build and seven SSR/package checks. The six canonical materials matched the remote repository commit recorded there. Existing installed dependencies were reused; this does not certify a fresh installation or browser behavior.
-
-- Passed: 17 source/replay/search/comparison tests, with no skips; TypeScript; static production build; seven server-rendered markup/offline packaging assertions, including rendered deadline excerpts and their actual source lines; whitespace check.
-- The compatible runtime used here was Node.js 24.19.0. The default bundled runtime could not start on this Mac; no global runtime or system installation was changed.
-- The previous automated browser launch failed before loading the page. This interaction pass did not repeat that unchanged failed setup. **No screenshot, visual acceptance, responsive layout, keyboard interaction, clipboard interaction, or download interaction is claimed as browser-verified.** Responsive rules and interaction code are implemented; they still require actual browser inspection.
-- `scripts/verify-ui.mjs` provides a local-only browser acceptance suite for 1440, 1024, 768, 390 and 320 pixel widths. Its syntax was checked; the suite has not been executed. It needs an existing Playwright installation and compatible Chromium. Optional `EVIDENCEBRIDGE_PLAYWRIGHT_MODULE` and `EVIDENCEBRIDGE_CHROMIUM_PATH` select those existing installations; it installs nothing. Run it against the preview server before publishing.
-- The public domain and Vercel deployment remain unchanged.
+The frontend is a synthetic, prewritten static replay. Browser passes do not prove a live model, MCP invocation, document upload, real review submission or server audit persistence. Clipboard outcomes use controlled promises and do not certify OS clipboard permissions. Public Vercel publication is still pending renewed account login; no deployment result is claimed here.

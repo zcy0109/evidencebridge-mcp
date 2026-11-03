@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-03T12:29:01.456Z",
+  "finished_at": "2026-11-03T12:29:03.829Z",
+  "status": "failed",
+  "scope": "Actual local static-demo browser interactions and layout; not deployment, backend, real-model, HTTPS or automated visual-design approval.",
+  "base_url": "http://127.0.0.1:4178",
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "playwright_version": "1.64.1",
+    "context": "new_ephemeral_context"
+  },
+  "node_version": "v24.22.1",
+  "counts": {
+    "planned": 23,
+    "passed": 13,
+    "failed": 1,
+    "not_executed": 9
+  },
+  "checks": [
+    {
+      "name": "local page opens in a fresh browser context without a user profile",
+      "status": "passed",
+      "duration_ms": 956
+    },
+    {
+      "name": "initial attendance answer links to the original source at line three",
+      "status": "passed",
+      "duration_ms": 7
+    },
+    {
+      "name": "version comparison shows only the labelled deadline excerpts and opens both original sources",
+      "status": "passed",
+      "duration_ms": 191
+    },
+    {
+      "name": "legal example withholds advice and discloses that no review is submitted",
+      "status": "passed",
+      "duration_ms": 71
+    },
+    {
+      "name": "audit view and downloaded JSON reflect the selected legal replay",
+      "status": "passed",
+      "duration_ms": 79
+    },
+    {
+      "name": "browsing another source clears the citation highlight and returning focuses the cited source",
+      "status": "passed",
+      "duration_ms": 110
+    },
+    {
+      "name": "document filtering reports both real matches and an honest empty state",
+      "status": "passed",
+      "duration_ms": 60
+    },
+    {
+      "name": "research offers three explicit replay cases without a question form or answer-generation control",
+      "status": "passed",
+      "duration_ms": 112
+    },
+    {
+      "name": "a rejected clipboard operation displays failure rather than claiming success",
+      "status": "passed",
+      "duration_ms": 97
+    },
+    {
+      "name": "keyboard activation selects an explicit example and citation navigation restores the invoking button",
+      "status": "passed",
+      "duration_ms": 53
+    },
+    {
+      "name": "Find anything opens a native dialog with labelled search and Escape restores its opener",
+      "status": "passed",
+      "duration_ms": 63
+    },
+    {
+      "name": "both Ctrl K and Command K toggle workspace search and restore the selected case button",
+      "status": "passed",
+      "duration_ms": 117
+    },
+    {
+      "name": "command search filters sources, scenarios and views without inventing an empty-result destination",
+      "status": "passed",
+      "duration_ms": 306
+    },
+    {
+      "name": "command options expose selection and arrow keys plus Enter choose the selected document version",
+      "status": "failed",
+      "duration_ms": 71,
+      "error": "The input did not match the regular expression /research-policy-v1\\.md/. Input:\n\n'research-policy-v2.md'\n"
+    }
+  ],
+  "page_errors": [],
+  "browser_console_errors": [],
+  "blocked_external_requests": [],
+  "clipboard_test": "Controlled rejected and deferred/resolved promises in an isolated browser context; no system clipboard access",
+  "export": {
+    "path": "verification/ui/2026-11-03T12-29-01.456Z-export.json",
+    "bytes": 1210,
+    "sha256": "2cba5d2274d27407b0d0cbf21b3e0464968f08acc91fedc4cf6b8d975fa9d2c4"
+  },
+  "screenshots": [
+    "verification/ui/2026-11-03T12-29-01.456Z-failure.png"
+  ],
+  "source_sha256": {
+    "app/page.tsx": "9bd095e51a15da22c8cd99b6ce6e290224aa0bbe238434531ed0738680e16c33",
+    "app/globals.css": "d074d35a168de5077a50ca8ab53c368770e878ed87b47392c4f614694d83a992",
+    "components/workspace-overlays.tsx": "f6a0d35122cad18081461310e38010b7c01f7a767ec7064b0b2d7ae09cdbc2a3",
+    "components/policy-comparison.tsx": "5d4ef1d48ab23a6a4cc071833fd736f543627378f83141aafd873d5218133d6c",
+    "lib/demo-data.ts": "f4f8d8b77e9b319762978d56388858acc82ca7fdf7f7124b4e906d581a96bd35",
+    "lib/workspace-commands.ts": "ab2d5267885230941e17b75e580fe3f86e10c53c38c1fc221d9453d9f84a7326",
+    "lib/policy-comparison.ts": "e279926f3026b3ea650ff0218e81c92c1c8fee5441e4a463dd5ead23d6cc7d79",
+    "scripts/verify-ui.mjs": "f1842f38c273ce57d51187fccb947b5b48c130fd1a3139553687334a5c58b3fb"
+  },
+  "error": "The input did not match the regular expression /research-policy-v1\\.md/. Input:\n\n'research-policy-v2.md'\n"
+}

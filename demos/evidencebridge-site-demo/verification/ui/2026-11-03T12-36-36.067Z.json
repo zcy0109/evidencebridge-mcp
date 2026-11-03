@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-03T12:36:36.067Z",
+  "finished_at": "2026-11-03T12:36:41.366Z",
+  "status": "passed",
+  "scope": "Actual local static-demo browser interactions and layout; not deployment, backend, real-model, HTTPS or automated visual-design approval.",
+  "base_url": "http://127.0.0.1:4178",
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "playwright_version": "1.64.1",
+    "context": "new_ephemeral_context"
+  },
+  "node_version": "v24.22.1",
+  "counts": {
+    "planned": 24,
+    "passed": 24,
+    "failed": 0,
+    "not_executed": 0
+  },
+  "checks": [
+    {
+      "name": "local page opens in a fresh browser context without a user profile",
+      "status": "passed",
+      "duration_ms": 1097
+    },
+    {
+      "name": "the first keyboard stop reveals a skip link and Enter focuses the workspace",
+      "status": "passed",
+      "duration_ms": 40
+    },
+    {
+      "name": "initial attendance answer links to the original source at line three",
+      "status": "passed",
+      "duration_ms": 10
+    },
+    {
+      "name": "version comparison shows only the labelled deadline excerpts and opens both original sources",
+      "status": "passed",
+      "duration_ms": 233
+    },
+    {
+      "name": "legal example withholds advice and discloses that no review is submitted",
+      "status": "passed",
+      "duration_ms": 75
+    },
+    {
+      "name": "audit view and downloaded JSON reflect the selected legal replay",
+      "status": "passed",
+      "duration_ms": 91
+    },
+    {
+      "name": "browsing another source clears the citation highlight and returning focuses the cited source",
+      "status": "passed",
+      "duration_ms": 108
+    },
+    {
+      "name": "document filtering reports both real matches and an honest empty state",
+      "status": "passed",
+      "duration_ms": 84
+    },
+    {
+      "name": "research offers three explicit replay cases without a question form or answer-generation control",
+      "status": "passed",
+      "duration_ms": 142
+    },
+    {
+      "name": "a rejected clipboard operation displays failure rather than claiming success",
+      "status": "passed",
+      "duration_ms": 95
+    },
+    {
+      "name": "keyboard activation selects an explicit example and citation navigation restores the invoking button",
+      "status": "passed",
+      "duration_ms": 70
+    },
+    {
+      "name": "Find anything opens a native dialog with labelled search and Escape restores its opener",
+      "status": "passed",
+      "duration_ms": 71
+    },
+    {
+      "name": "both Ctrl K and Command K toggle workspace search and restore the selected case button",
+      "status": "passed",
+      "duration_ms": 145
+    },
+    {
+      "name": "command search filters sources, scenarios and views without inventing an empty-result destination",
+      "status": "passed",
+      "duration_ms": 353
+    },
+    {
+      "name": "command options expose selection and arrow keys plus Enter choose the selected document version",
+      "status": "passed",
+      "duration_ms": 139
+    },
+    {
+      "name": "Focus reading toggles the desktop sidebar while retaining the active example",
+      "status": "passed",
+      "duration_ms": 175
+    },
+    {
+      "name": "the source reader shows the cited line in a native dialog and closes with focus restoration",
+      "status": "passed",
+      "duration_ms": 238
+    },
+    {
+      "name": "copy feedback remains pending until a controlled clipboard promise resolves",
+      "status": "passed",
+      "duration_ms": 137
+    },
+    {
+      "name": "a clipboard completion cannot overwrite feedback after switching examples",
+      "status": "passed",
+      "duration_ms": 204
+    },
+    {
+      "name": "1440px layout fits the research, documents, audit, command palette and source reader",
+      "status": "passed",
+      "duration_ms": 386
+    },
+    {
+      "name": "1024px layout fits the research, documents, audit, command palette and source reader",
+      "status": "passed",
+      "duration_ms": 348
+    },
+    {
+      "name": "768px layout fits the research, documents, audit, command palette and source reader",
+      "status": "passed",
+      "duration_ms": 333
+    },
+    {
+      "name": "390px layout fits the research, documents, audit, command palette and source reader",
+      "status": "passed",
+      "duration_ms": 386
+    },
+    {
+      "name": "320px layout fits the research, documents, audit, command palette and source reader",
+      "status": "passed",
+      "duration_ms": 311
+    }
+  ],
+  "page_errors": [],
+  "browser_console_errors": [],
+  "blocked_external_requests": [],
+  "clipboard_test": "Controlled rejected and deferred/resolved promises in an isolated browser context; no system clipboard access",
+  "export": {
+    "path": "verification/ui/2026-11-03T12-36-36.067Z-export.json",
+    "bytes": 1210,
+    "sha256": "2cba5d2274d27407b0d0cbf21b3e0464968f08acc91fedc4cf6b8d975fa9d2c4"
+  },
+  "screenshots": [
+    "verification/ui/2026-11-03T12-36-36.067Z-research-1440.png",
+    "verification/ui/2026-11-03T12-36-36.067Z-research-390.png"
+  ],
+  "source_sha256": {
+    "app/page.tsx": "9bd095e51a15da22c8cd99b6ce6e290224aa0bbe238434531ed0738680e16c33",
+    "app/globals.css": "cfdd4fff8b21a0edcdf670080476ce7fbae29cbdeb837c1778649de818a427f2",
+    "components/workspace-overlays.tsx": "f6a0d35122cad18081461310e38010b7c01f7a767ec7064b0b2d7ae09cdbc2a3",
+    "components/policy-comparison.tsx": "5d4ef1d48ab23a6a4cc071833fd736f543627378f83141aafd873d5218133d6c",
+    "lib/demo-data.ts": "f4f8d8b77e9b319762978d56388858acc82ca7fdf7f7124b4e906d581a96bd35",
+    "lib/workspace-commands.ts": "ab2d5267885230941e17b75e580fe3f86e10c53c38c1fc221d9453d9f84a7326",
+    "lib/policy-comparison.ts": "e279926f3026b3ea650ff0218e81c92c1c8fee5441e4a463dd5ead23d6cc7d79",
+    "scripts/verify-ui.mjs": "c1b0174e85736d7299906c0111d5151f595e18e8651d664dd325883eeb882d31"
+  }
+}

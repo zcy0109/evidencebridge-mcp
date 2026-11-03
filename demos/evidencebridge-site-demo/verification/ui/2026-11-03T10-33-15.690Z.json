@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-03T10:33:15.690Z",
+  "finished_at": "2026-11-03T10:33:19.210Z",
+  "status": "failed",
+  "scope": "Actual local static-demo browser interactions and layout; not deployment, backend, real-model, HTTPS or automated visual-design approval.",
+  "base_url": "http://127.0.0.1:4178",
+  "browser": {
+    "engine": "chromium",
+    "version": "156.0.8078.4",
+    "playwright_version": "1.64.1",
+    "context": "new_ephemeral_context"
+  },
+  "node_version": "v24.22.1",
+  "counts": {
+    "planned": 23,
+    "passed": 8,
+    "failed": 1,
+    "not_executed": 14
+  },
+  "checks": [
+    {
+      "name": "local page opens in a fresh browser context without a user profile",
+      "status": "passed",
+      "duration_ms": 2577
+    },
+    {
+      "name": "initial attendance answer links to the original source at line three",
+      "status": "passed",
+      "duration_ms": 11
+    },
+    {
+      "name": "version comparison shows only the labelled deadline excerpts and opens both original sources",
+      "status": "passed",
+      "duration_ms": 242
+    },
+    {
+      "name": "legal example withholds advice and discloses that no review is submitted",
+      "status": "passed",
+      "duration_ms": 95
+    },
+    {
+      "name": "audit view and downloaded JSON reflect the selected legal replay",
+      "status": "passed",
+      "duration_ms": 87
+    },
+    {
+      "name": "browsing another source clears the citation highlight and returning focuses the cited source",
+      "status": "passed",
+      "duration_ms": 123
+    },
+    {
+      "name": "document filtering reports both real matches and an honest empty state",
+      "status": "passed",
+      "duration_ms": 79
+    },
+    {
+      "name": "research offers three explicit replay cases without a question form or answer-generation control",
+      "status": "passed",
+      "duration_ms": 148
+    },
+    {
+      "name": "a rejected clipboard operation displays failure rather than claiming success",
+      "status": "failed",
+      "duration_ms": 50,
+      "error": "The input did not match the regular expression /Select the source text to copy it/. Input:\n\n''\n"
+    }
+  ],
+  "page_errors": [],
+  "browser_console_errors": [],
+  "blocked_external_requests": [],
+  "clipboard_test": "Controlled rejected and deferred/resolved promises in an isolated browser context; no system clipboard access",
+  "export": {
+    "path": "verification/ui/2026-11-03T10-33-15.690Z-export.json",
+    "bytes": 1210,
+    "sha256": "2cba5d2274d27407b0d0cbf21b3e0464968f08acc91fedc4cf6b8d975fa9d2c4"
+  },
+  "screenshots": [
+    "verification/ui/2026-11-03T10-33-15.690Z-failure.png"
+  ],
+  "source_sha256": {
+    "app/page.tsx": "9bd095e51a15da22c8cd99b6ce6e290224aa0bbe238434531ed0738680e16c33",
+    "app/globals.css": "d074d35a168de5077a50ca8ab53c368770e878ed87b47392c4f614694d83a992",
+    "components/workspace-overlays.tsx": "f6a0d35122cad18081461310e38010b7c01f7a767ec7064b0b2d7ae09cdbc2a3",
+    "components/policy-comparison.tsx": "5d4ef1d48ab23a6a4cc071833fd736f543627378f83141aafd873d5218133d6c",
+    "lib/demo-data.ts": "f4f8d8b77e9b319762978d56388858acc82ca7fdf7f7124b4e906d581a96bd35",
+    "lib/workspace-commands.ts": "ab2d5267885230941e17b75e580fe3f86e10c53c38c1fc221d9453d9f84a7326",
+    "lib/policy-comparison.ts": "e279926f3026b3ea650ff0218e81c92c1c8fee5441e4a463dd5ead23d6cc7d79",
+    "scripts/verify-ui.mjs": "4a4839c726f2416c586530feb7070926e2c96ae06102fb86b530cdc02f1ab887"
+  },
+  "error": "The input did not match the regular expression /Select the source text to copy it/. Input:\n\n''\n"
+}
