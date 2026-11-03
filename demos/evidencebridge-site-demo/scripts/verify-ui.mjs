@@ -392,18 +392,25 @@ const plan = [
       assert.equal(await selected.count(), 1, 'Exactly one option must expose selection');
       const initial = await selected.innerText();
       await input.press('ArrowDown');
+      await page.waitForFunction((prior) => {
+        const option = document.querySelector('dialog[open] [role="option"][aria-selected="true"]');
+        return option instanceof HTMLElement && option.innerText !== prior;
+      }, initial);
       assert.equal(await selected.count(), 1);
       const next = await selected.innerText();
       assert.notEqual(next, initial, 'Policy version options must have distinct visible labels');
       await input.press('ArrowUp');
+      await page.waitForFunction((label) => document.querySelector('dialog[open] [role="option"][aria-selected="true"]')?.innerText === label, initial);
       assert.equal(await selected.innerText(), initial);
       await input.press('ArrowDown');
+      await page.waitForFunction((label) => document.querySelector('dialog[open] [role="option"][aria-selected="true"]')?.innerText === label, next);
       const choice = await selected.innerText();
       assert.match(choice, /(?:research-policy-v[12]\.md|[vV](?:ersion\s*)?[12])/);
       await input.press('Enter');
       await dialog.waitFor({ state: 'hidden' });
       const version = choice.match(/research-policy-v([12])\.md|[vV](?:ersion\s*)?([12])/)?.slice(1).find(Boolean);
       assert.ok(version, 'The selected policy version must be identifiable');
+      await page.waitForFunction((filename) => document.querySelector('.source-inspector .document-filename')?.textContent?.includes(filename), `research-policy-v${version}.md`);
       assert.match(await page.locator('.source-inspector .document-filename').innerText(), new RegExp(`research-policy-v${version}\\.md`));
     },
   },
