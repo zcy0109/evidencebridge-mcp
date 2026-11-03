@@ -295,7 +295,12 @@ const plan = [
     name: 'a rejected clipboard operation displays failure rather than claiming success',
     async run() {
       await page.getByRole('button', { name: 'Copy citation', exact: true }).click();
-      await page.waitForFunction(() => document.querySelector('.live-notice')?.textContent?.startsWith('Copy is unavailable'));
+      await page.waitForFunction(() => {
+        const notice = document.querySelector('.live-notice');
+        return notice instanceof HTMLElement
+          && getComputedStyle(notice).visibility === 'visible'
+          && notice.innerText.includes('Select the source text to copy it');
+      });
       assert.equal(await page.evaluate(() => window.__evidencebridgeCopyAttempts), 1);
       assert.match(await page.locator('.live-notice').innerText(), /Select the source text to copy it/);
       assert.ok(!(await page.locator('.live-notice').innerText()).includes('Citation copied'));
