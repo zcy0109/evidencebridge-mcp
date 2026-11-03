@@ -1,0 +1,92 @@
+name: Public demo
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-demo-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  public-demo:
+    name: Static demo and browser interactions
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/evidencebridge-browser-binaries
+    defaults:
+      run:
+        working-directory: demos/evidencebridge-site-demo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: demos/evidencebridge-site-demo/pnpm-lock.yaml
+
+      - name: Remove historical generated verification files
+        run: |
+          rm -rf verification/ui
+          rm -f verification/ci-preview.log verification/design-checks.json
+      - name: Install the demo's isolated dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check source, replay and command behavior
+        run: pnpm test
+      - name: Check types
+        run: pnpm typecheck
+      - name: Build static output and verify offline packaging
+        run: pnpm build:preview
+
+      - name: Install the pinned browser test tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/evidencebridge-browser" --no-save --no-package-lock --ignore-scripts playwright@1.64.1
+          node "$RUNNER_TEMP/evidencebridge-browser/node_modules/playwright/cli.js" install --with-deps chromium
+
+      - name: Verify actual browser interactions and responsive layouts
+        timeout-minutes: 5
+        env:
+          BASE_URL: http://127.0.0.1:4178
+          EVIDENCEBRIDGE_PLAYWRIGHT_MODULE: ${{ runner.temp }}/evidencebridge-browser/node_modules/playwright/index.mjs
+        run: |
+          pnpm preview --strictPort > verification/ci-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          node --input-type=module <<'NODE'
+          import { setTimeout } from 'node:timers/promises';
+          const url = process.env.BASE_URL;
+          let ready = false;
+          for (let attempt = 0; attempt < 60; attempt += 1) {
+            try {
+              const response = await fetch(url, { signal: AbortSignal.timeout(1000), redirect: 'error' });
+              if (response.status === 200) {
+                await response.arrayBuffer();
+                ready = true;
+                break;
+              }
+            } catch { /* The preview may still be starting. */ }
+            await setTimeout(500);
+          }
+          if (!ready) throw new Error(`Preview did not become ready at ${url}; see ci-preview.log`);
+          NODE
+          node scripts/verify-ui.mjs
+
+      - name: Preserve the browser report, screenshots and preview log
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-demo-verification
+          path: |
+            demos/evidencebridge-site-demo/verification/ui/
+            demos/evidencebridge-site-demo/verification/ci-preview.log
+            demos/evidencebridge-site-demo/verification/design-checks.json
+          if-no-files-found: warn
+          retention-days: 14
