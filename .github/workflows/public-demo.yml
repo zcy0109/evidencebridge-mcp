@@ -17,8 +17,6 @@ jobs:
     name: Static demo and browser interactions
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    env:
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/evidencebridge-browser-binaries
     defaults:
       run:
         working-directory: demos/evidencebridge-site-demo
@@ -47,6 +45,8 @@ jobs:
         run: pnpm build:preview
 
       - name: Install the pinned browser test tools
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/evidencebridge-browser-binaries
         run: |
           npm install --prefix "$RUNNER_TEMP/evidencebridge-browser" --no-save --no-package-lock --ignore-scripts playwright@1.64.1
           node "$RUNNER_TEMP/evidencebridge-browser/node_modules/playwright/cli.js" install --with-deps chromium
@@ -55,6 +55,7 @@ jobs:
         timeout-minutes: 5
         env:
           BASE_URL: http://127.0.0.1:4178
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/evidencebridge-browser-binaries
           EVIDENCEBRIDGE_PLAYWRIGHT_MODULE: ${{ runner.temp }}/evidencebridge-browser/node_modules/playwright/index.mjs
         run: |
           pnpm preview --strictPort > verification/ci-preview.log 2>&1 &
